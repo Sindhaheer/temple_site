@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>12 JYOTIRLINGAS TEMPLES OF LORD SHIVA</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    body {
+      background: linear-gradient(to right, #fceabb, #f8b500);
+      font-family: 'Segoe UI', sans-serif;
+      padding-top: 70px; /* space for fixed navbar */
+    }
+
+    /* Stylish Navbar */
+    .navbar {
+      background: rgba(128, 0, 32, 0.95); /* Deep maroon with slight transparency */
+      backdrop-filter: blur(10px);
+      transition: background-color 0.3s ease-in-out;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .navbar-brand {
+      font-weight: bold;
+      font-size: 1.5rem;
+      color: #ffc107 !important;
+      font-family: 'Georgia', serif;
+      text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.3);
+    }
+
+    .nav-link {
+      color: white !important;
+      font-weight: 500;
+      position: relative;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      width: 0%;
+      height: 2px;
+      left: 0;
+      bottom: 0;
+      background: gold;
+      transition: width 0.3s;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .carousel-caption {
+      background: rgba(0, 0, 0, 0.6);
+      padding: 1rem;
+      border-radius: 10px;
+    }
+
+    .carousel-item img {
+      max-height: 400px;
+      object-fit: cover;
+      border-radius: 15px;
+    }
+
+    .card {
+      border: none;
+      border-radius: 15px;
+      transition: transform 0.3s, box-shadow 0.3s;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    h1, h2 {
+      font-weight: bold;
+      color: #3b3b3b;
+    }
+
+    #gallery {
+      background: #fff8e7;
+      padding: 2rem;
+      border-radius: 15px;
+      margin-bottom: 2rem;
+    }
+
+    footer {
+      background: #222;
+      color: #fff;
+      padding: 1rem 0;
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
+</head>
+<body>
+
+<!-- 🌟 Beautiful Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top shadow-sm">
+  <div class="container">
+    <a class="navbar-brand" href="#">🕉️ JYOTIRLINGAS</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link active" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#gallery">Contents</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Header -->
+<div class="container text-center mb-5">
+  <h1 class="display-5">12 JYOTIRLINGAS TEMPLES OF LORD SHIVA</h1>
+  <p class="lead text-muted">A sacred pilgrimage across India's most revered Shiva temples.</p>
+</div>
+
+<!-- Carousel -->
+<div id="templeCarousel" class="carousel slide container mb-5" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    {% for t in temples %}
+    <div class="carousel-item {% if loop.first %}active{% endif %}">
+      <img src="{{ url_for('static', filename='images/' + t.img) }}" class="d-block w-75 mx-auto" alt="{{ t.name }}">
+      <div class="carousel-caption d-none d-md-block">
+        <h5>{{ t.name }}</h5>
+        <p>{{ t.location }}</p>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#templeCarousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#templeCarousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon"></span>
+  </button>
+</div>
+
+<!-- Gallery -->
+<div class="container" id="gallery">
+  <h2 class="text-center mb-4">Temple Gallery & Locations</h2>
+  <div class="row">
+    {% for t in temples %}
+    <div class="col-md-4 mb-4">
+      <div class="card h-100">
+        <img src="{{ url_for('static', filename='images/' + t.img) }}" class="card-img-top" alt="{{ t.name }}">
+        <div class="card-body">
+          <h5 class="card-title">{{ t.name }}</h5>
+          <p class="card-text">{{ t.location }}</p>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <p class="mb-0">© 2025 Jyotirlinga Darshan. All Rights Reserved.</p>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
